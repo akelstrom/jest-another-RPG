@@ -1,10 +1,8 @@
-const Potion = require('../lib/Potion');
-jest.mock('../lib/Potion');
-
-console.log(new Potion());
-
 //you do not need to use .js at the end bc node will automatically assume that it is a js file
 const Player = require('../lib/Player');
+const Potion = require('../lib/Potion');
+
+jest.mock('../lib/Potion');
 
 test('creates a player object', () => {
     const player = new Player('Dave');
