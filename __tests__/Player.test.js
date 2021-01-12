@@ -4,6 +4,8 @@ const Potion = require('../lib/Potion');
 
 jest.mock('../lib/Potion');
 
+//player object tests
+
 test('creates a player object', () => {
     const player = new Player('Dave');
 
@@ -35,6 +37,8 @@ test("gets player's stats as an object", () => {
     expect(player.getInventory()).toEqual(false);
   });
 
+  //player health tests--
+
   test("gets player's health value", () => {
       const player = new Player('Dave');
 
@@ -63,3 +67,38 @@ test("gets player's stats as an object", () => {
   
     expect(player.health).toBe(0);
   });
+
+//Player attack methods-- 
+
+  test("gets player's attack value", () => {
+    const player = new Player('Dave');
+    player.strength = 10;
+  
+    expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+    expect(player.getAttackValue()).toBeLessThanOrEqual(15);
+  });
+
+  //check that the potion is added correctly 
+
+  test('adds a potion to the inventory', () => {
+    const player = new Player('Dave');
+    const oldCount = player.inventory.length;
+  
+    player.addPotion(new Potion());
+  
+    expect(player.inventory.length).toBeGreaterThan(oldCount);
+  });
+
+  //use index of the potion to keep track of which one has been selected
+
+  test('uses a potion from inventory', () => {
+    const player = new Player('Dave');
+    player.inventory = [new Potion(), new Potion(), new Potion()];
+    const oldCount = player.inventory.length;
+  
+    player.usePotion(1);
+  
+    expect(player.inventory.length).toBeLessThan(oldCount);
+  });
+
+  
