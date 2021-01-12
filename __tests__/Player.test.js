@@ -101,4 +101,4 @@ test("gets player's stats as an object", () => {
     expect(player.inventory.length).toBeLessThan(oldCount);
   });
 
-  
+ 
